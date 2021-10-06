@@ -133,9 +133,16 @@
                     }
                   });
                 });
-                break;
-            }
 
+                return Fliplet.Hooks.run('afterChartSummary', {
+                  config: data,
+                  id: data.id,
+                  uuid: data.uuid,
+                  type: 'pie',
+                  records: result
+                });
+            }
+          }).then(function() {
             data.entries = _.reverse(_.sortBy(data.entries, function(o) {
               return o.y;
             }));
