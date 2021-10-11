@@ -106,6 +106,7 @@
               case 1:
                 // Summarize data
                 data.name = T('widgets.chart.pie.count', { column: data.dataSourceQuery.columns.column });
+
                 result.dataSourceEntries.forEach(function(row) {
                   var value = row[data.dataSourceQuery.columns.column];
 
@@ -134,9 +135,16 @@
                     }
                   });
                 });
-                break;
-            }
 
+                return Fliplet.Hooks.run('afterChartSummary', {
+                  config: data,
+                  id: data.id,
+                  uuid: data.uuid,
+                  type: 'pie',
+                  records: result
+                });
+            }
+          }).then(function() {
             data.entries = _.reverse(_.sortBy(data.entries, function(o) {
               return o.y;
             }));
