@@ -8,13 +8,7 @@
     Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
       var chartId = data.id;
       var $container = $(this);
-      // var themeInstance = Fliplet.Themes.Current.getInstance();
-      var themeInstance = {
-        data: {
-          values: {},
-          widgetInstances: []
-        }
-      };
+      var themeInstance = Fliplet.Themes.Current.getInstance();
       var themeValues = Object.assign({}, themeInstance.data.values);
 
       _.forEach(themeInstance.data.widgetInstances, function(widgetProp) {
@@ -110,7 +104,7 @@
                 });
                 break;
               case 1:
-                // Summarise data
+                // Summarize data
                 data.name = T('widgets.chart.pie.count', { column: data.dataSourceQuery.columns.column });
                 result.dataSourceEntries.forEach(function(row) {
                   var value = row[data.dataSourceQuery.columns.column];
