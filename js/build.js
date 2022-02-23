@@ -527,7 +527,7 @@
         $(this).find('.chart-styles').remove();
       }
 
-      refreshData().then(drawChart).catch(function(error) {
+      Fliplet().then(refreshData).then(drawChart).catch(function(error) {
         console.error(error);
         setRefreshTimer();
       });
