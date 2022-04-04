@@ -41,7 +41,7 @@
       function refreshData() {
         if (typeof data.dataSourceQuery !== 'object') {
           data.entries = [
-            { name: 'A', y: 3, sliced: false, selected: false },
+            { name: 'A', y: 3 },
             { name: 'B', y: 2 },
             { name: 'C', y: 1 }
           ];
