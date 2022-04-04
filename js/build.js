@@ -41,7 +41,7 @@
       function refreshData() {
         if (typeof data.dataSourceQuery !== 'object') {
           data.entries = [
-            { name: 'A', y: 3, sliced: false, selected: false },
+            { name: 'A', y: 3 },
             { name: 'B', y: 2 },
             { name: 'C', y: 1 }
           ];
@@ -147,10 +147,6 @@
               return o.y;
             }));
 
-            if (data.entries.length) {
-              data.entries[0].sliced = false;
-              data.entries[0].selected = false;
-            }
 
             // SAVES THE TOTAL NUMBER OF ROW/ENTRIES
             data.totalEntries = _.reduce(data.entries, function(sum, o) {
