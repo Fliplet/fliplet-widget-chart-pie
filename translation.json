@@ -1,0 +1,14 @@
+{
+  "widgets": {
+    "chart": {
+      "pie": {
+        "title": "Pie Chart",
+        "instruction": "Start configuring your component and the chart will appear here.",
+        "total": "Total",
+        "updatedAt": "Last updated",
+        "category": "Category",
+        "count": "Count of {{column}}"
+      }
+    }
+  }
+}
