@@ -147,7 +147,6 @@
               return o.y;
             }));
 
-
             // SAVES THE TOTAL NUMBER OF ROW/ENTRIES
             data.totalEntries = _.reduce(data.entries, function(sum, o) {
               return sum + o.y;
