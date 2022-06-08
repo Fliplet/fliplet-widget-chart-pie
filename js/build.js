@@ -41,6 +41,16 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
 
   Fliplet.Chart.add(chartPromise);
 
+  function getDeviceType() {
+    if (Modernizr.mobile) {
+      return '';
+    } else if (Modernizr.tablet) {
+      return 'Tablet';
+    }
+
+    return 'Desktop';
+  }
+
   function init() {
     function refreshData() {
       if (typeof data.dataSourceQuery !== 'object') {
@@ -219,16 +229,6 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
 
     function getThemeColor(colorKey) {
       return (themeValues && themeValues.hasOwnProperty(colorKey)) ? themeValues[colorKey] : Fliplet.Themes.Current.get(colorKey);
-    }
-
-    function getDeviceType() {
-      if (Modernizr.mobile) {
-        return '';
-      } else if (Modernizr.tablet) {
-        return 'Tablet';
-      }
-
-      return 'Desktop';
     }
 
     Fliplet.Studio.onEvent(function(event) {
