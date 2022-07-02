@@ -1,0 +1,13 @@
+{
+  "widgets": {
+    "charts": {
+      "pie": {
+        "total": "Total",
+        "lastUpdated": "Last updated",
+        "label": "{{label}}: ",
+        "title": "Count of {{name}}",
+        "category": "Category {{count}}"
+      }
+    }
+  }
+}
