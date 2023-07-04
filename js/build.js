@@ -10,9 +10,16 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
   if (themeInstance) {
     Object.assign({}, themeInstance.data.values);
 
+    if(!themeValues) {
+      var themeValue = themeInstance.data.values;
+      var widgetValue = getColors(themeInstance.data.widgetInstances);
+
+      themeValues = Object.assign(widgetValue, themeValue);
+    }
+
     _.forEach(themeInstance.data.widgetInstances, function(widgetProp) {
-      if (chartId === widgetProp.id) {
-        Object.assign(themeValues, widgetProp.values);
+      if (chartId === widgetProp.id && themeValues) {
+        Object.assign(widgetProp.values, themeValues);
       }
     });
   }
@@ -47,6 +54,22 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
     }
 
     return 'Desktop';
+  }
+
+  function getColors(widgets) {
+    var widgetColors = {};
+
+    if (!widgets) {
+      return widgetColors;
+    }
+
+    widgets.forEach(function(widget) {
+      if (widget.id === chartId) {
+        Object.assign(widgetColors, widget.values);
+      }
+    });
+
+    return widgetColors;
   }
 
   function init() {
