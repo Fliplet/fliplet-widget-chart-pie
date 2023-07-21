@@ -13,7 +13,7 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
     var themeValue = themeInstance.data.values ? themeInstance.data.values : {};
     var widgetValue = getColors(themeInstance.data.widgetInstances);
 
-    if (themeInstance.data.widgetInstances.length > 0) {
+    if (themeInstance.data.widgetInstances && themeInstance.data.widgetInstances.length > 0) {
       _.some(themeInstance.data.widgetInstances, function(widgetProp) {
         if (chartId === widgetProp.id) {
           themeValues = Object.assign(themeValue, widgetValue);
