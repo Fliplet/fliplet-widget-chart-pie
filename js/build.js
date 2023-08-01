@@ -10,22 +10,21 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
 
   if (themeInstance) {
     Object.assign({}, themeInstance.data.values);
-    var chartFlag = false;
 
-    var themeValue = themeInstance.data.values ? themeInstance.data.values : {};
+    var themeValue = themeInstance.data.values || {};
     var widgetValue = getColors(themeInstance.data.widgetInstances);
 
-    if (themeInstance.data.widgetInstances && themeInstance.data.widgetInstances.length > 0) {
-      _.some(themeInstance.data.widgetInstances, function(widgetProp) {
+    if ((themeInstance.data.widgetInstances || []).length) {
+      var instanceFound = _.some(themeInstance.data.widgetInstances, function(widgetProp) {
         if (chartId === widgetProp.id) {
           themeValues = Object.assign(themeValue, widgetValue);
           Object.assign(widgetProp.values, themeValues);
-          chartFlag = true;
 
           return true;
         }
       });
-      if (!chartFlag) {
+
+      if (!instanceFound) {
         themeValues = Object.assign({}, themeValue);
       }
     } else {
@@ -404,7 +403,6 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
     function generateColors() {
       var colors = defaultColors.slice();
       var customColors = Fliplet.Themes && Fliplet.Themes.Current.getSettingsForWidgetInstance(chartUuid);
-
       if (!Fliplet.Themes) {
         return colors;
       }
@@ -424,9 +422,9 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
         }
 
         if (colorKey === 'chartColor1' && inheritColor1) {
-          colors[index] = getThemeColor('highlightColor',newColor, index, colorKey);
+          colors[index] = getThemeColor('highlightColor', newColor, index, colorKey);
         } else if (colorKey === 'chartColor2' && inheritColor2) {
-          colors[index] = getThemeColor('secondaryColor',newColor, index, colorKey);
+          colors[index] = getThemeColor('secondaryColor', newColor, index, colorKey);
         }
       });
 
