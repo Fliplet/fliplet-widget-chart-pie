@@ -1,7 +1,7 @@
 {
   "extends": "fliplet",
   "rules": {
-    "Highcharts": "readonly",
-    "ui": "readonly"
+    "Highcharts": 0,
+    "ui": 0
   }
 }
