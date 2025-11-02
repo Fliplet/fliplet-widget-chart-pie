@@ -18,8 +18,8 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
         return;
       }
 
-      _.some(themes, function(theme) {
-        _.some(theme.instances, function(instance) {
+      Fliplet.Utils.some(themes, function(theme) {
+        Fliplet.Utils.some(theme.instances, function(instance) {
           if (!instance.settings.values) {
             return;
           }
@@ -29,7 +29,7 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
           var widgetValue = getColors(themeInstance.data.widgetInstances);
 
           if ((themeInstance.data.widgetInstances || []).length) {
-            var instanceFound = _.some(themeInstance.data.widgetInstances, function(widgetProp) {
+            var instanceFound = Fliplet.Utils.some(themeInstance.data.widgetInstances, function(widgetProp) {
               if (chartId === widgetProp.id) {
                 themeValues = Object.assign(themeValue, widgetValue);
                 Object.assign(widgetProp.values, themeValues);
@@ -124,7 +124,7 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
           type: 'pie'
         });
       }).then(function() {
-        if (_.isFunction(data.getData)) {
+        if (Fliplet.Utils.isFunction(data.getData)) {
           var response = data.getData();
 
           if (!(response instanceof Promise)) {
@@ -210,12 +210,10 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
               });
           }
         }).then(function() {
-          data.entries = _.reverse(_.sortBy(data.entries, function(o) {
-            return o.y;
-          }));
+          data.entries = Fliplet.Utils.sortBy(data.entries, 'y').reverse();
 
           // SAVES THE TOTAL NUMBER OF ROW/ENTRIES
-          data.totalEntries = _.reduce(data.entries, function(sum, o) {
+          data.totalEntries = Fliplet.Utils.reduce(data.entries, function(sum, o) {
             return sum + o.y;
           }, 0);
 
@@ -597,7 +595,7 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
       });
     }
 
-    var debouncedRedrawChart = _.debounce(function() {
+    var debouncedRedrawChart = Fliplet.Utils.debounce(function() {
       var colors = getColors();
 
       updateColors(colors);
@@ -631,7 +629,7 @@ Fliplet.Widget.instance('chart-pie-1-1-0', function(data) {
   }
 
   Fliplet().then(function() {
-    var debounceLoad = _.debounce(init, 500, { leading: true });
+    var debounceLoad = Fliplet.Utils.debounce(init, 500, { leading: true });
 
     Fliplet.Studio.onEvent(function(event) {
       if (event.detail.event === 'reload-widget-instance') {
